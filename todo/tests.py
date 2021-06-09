@@ -43,7 +43,7 @@ class TodoTestCase(TestCase):
 
     def test_update_to_list(self):
         """update liste"""
-        self.assertEqual(self.todo.title,self.DUMMY_NAME)
+        self.assertEqual(self.todo.title, self.DUMMY_NAME)
         self.todo.title = "new title"
         self.todo.save()
 
@@ -55,4 +55,4 @@ class TodoTestCase(TestCase):
         nbr_to_do_before_delete = Todo.objects.count()
         self.todo.delete()
         nbr_to_do_after_delete = Todo.objects.count()
-        self.assertTrue(nbr_to_do_after_delete == nbr_to_do_before_delete-1)
+        self.assertTrue(nbr_to_do_after_delete == nbr_to_do_before_delete - 1)
