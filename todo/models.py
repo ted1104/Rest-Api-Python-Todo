@@ -15,3 +15,7 @@ class TodoList(models.Model):
     """Liste de toDo"""
     name = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name = "Todo List"
+        verbose_name_plural = "Todo Lists"
+
