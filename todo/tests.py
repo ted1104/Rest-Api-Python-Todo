@@ -50,3 +50,9 @@ class TodoTestCase(TestCase):
         elementChaned = Todo.objects.get(pk=self.todo.pk)
 
         self.assertEqual(elementChaned.title, 'new title')
+
+    def test_delete_todo(self):
+        nbr_to_do_before_delete = Todo.objects.count()
+        self.todo.delete()
+        nbr_to_do_after_delete = Todo.objects.count()
+        self.assertTrue(nbr_to_do_after_delete == nbr_to_do_before_delete-1)
