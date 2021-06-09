@@ -5,13 +5,16 @@ from todo.models import Todo, TodoList
 class TodoSerializer(serializers.ModelSerializer):
     """"Serializer pour change les objects du model en json et vise versa"""
 
+    dueDate = serializers.DateField(source='due_date')
     class Meta:
         model = Todo
         fields = '__all__'
+
 
 
 class TodoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = TodoList
         fields = '__all__'
+
 
