@@ -6,11 +6,20 @@ from todo.models import Todo, TodoList
 
 # Create your tests here.
 class TodoTestCase(TestCase):
+    DUMMY_NAME = 'Teddy'
+
     def setUp(self):
         self.todoList = TodoList()
         self.todoList.name = 'Test new to do list'
         self.todoList.save()
 
+        self.todo = Todo()
+        self.todo.title = self.DUMMY_NAME
+        self.todo.due_date = datetime.today()
+        self.todo.favorite = True
+        self.todo.completed = False
+        self.todo.id_list = self.todoList
+        self.todo.save()
 
     def test_create_todo(self):
         # voir combien sont presents dans la db#
@@ -30,5 +39,14 @@ class TodoTestCase(TestCase):
 
         nbr_of_todo_after_add = Todo.objects.count()
 
-        self.assertTrue(nbr_of_todo_after_add == nbr_of_todo_before_add+1)
+        self.assertTrue(nbr_of_todo_after_add == nbr_of_todo_before_add + 1)
 
+    def test_update_to_list(self):
+        """update liste"""
+        self.assertEqual(self.todo.title,self.DUMMY_NAME)
+        self.todo.title = "new title"
+        self.todo.save()
+
+        elementChaned = Todo.objects.get(pk=self.todo.pk)
+
+        self.assertEqual(elementChaned.title, 'new title')
