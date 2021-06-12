@@ -24,5 +24,6 @@ router.registry.extend(router_todo.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('dj_rest_auth.urls')),
     path('', include(router.urls))
 ]
